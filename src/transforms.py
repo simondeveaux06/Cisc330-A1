@@ -9,6 +9,8 @@ w = y_CK rotated by pose angle (points to the source).
 Origin = detector center, (SDD - SAD) behind the isocenter along -w.
 Image frame: axes aligned with detector (row <-> u, col <-> v), pixel centers
 at integers, (0,0) = center of corner pixel (u = v = -100 mm + half pixel).
+
+From math primer transformations
 """
 import numpy as np
 from config import SDD_MM, SAD_MM, POSE_ANGLE_DEG, DETECTOR_SIZE_MM, PIXEL_PITCH_MM

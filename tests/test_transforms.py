@@ -42,3 +42,9 @@ def test_image_frame():
     assert_allclose(T.detector_to_image([0, 0]), [999.5, 999.5])
     assert_allclose(T.detector_to_image([-99.95, -99.95]), [0, 0], atol=1e-9)
     assert_allclose(T.image_to_detector(T.detector_to_image([12.3, -45.6])), [12.3, -45.6])
+
+
+def test_homogeneous_matrices_are_inverses():
+    for pose in "AB":
+        prod = T.F_det_from_ck(pose) @ T.F_ck_from_det(pose)
+        assert_allclose(prod, np.eye(4), atol=1e-9)

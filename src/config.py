@@ -58,4 +58,4 @@ I0_UNMOLESTED = 1.0
 MM_PER_CM = 10.0
 
 # Vertebra surface model 
-VERTEBRA_STL_PATH = pathlib.Path(__file__).resolve().parent.parent / "data" / "LumbarVertebrae_with_Markers.stl"
+VERTEBRA_STL_PATH = pathlib.Path(__file__).resolve().parent.parent / "data" / "LumbarVertebrae.-witrh-Markers.stl"

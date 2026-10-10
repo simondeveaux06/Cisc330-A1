@@ -113,6 +113,7 @@ def F_ck_from_det(pose):
 # Detector <-> Image (pose A or B)
 # ===========================================================================
 # Both detectors are identical, so the two maps are numerically the same
+_PIXEL_CENTRE_SHIFT = (N_PIXELS - 1) / 2.0   # index of the detector centre (999.5)
 
 def F_img_from_det(pose):
     """F_Img<-Det: Step 1 scale mm -> pixels, Step 2 shift the origin from the

@@ -25,7 +25,8 @@ PIXEL_PITCH_MM = 0.1      # pixel size
 N_PIXELS = int(round(DETECTOR_SIZE_MM / PIXEL_PITCH_MM))  
 
 # A detector-frame point must lie on the detector plane (w = 0) before it can
-
+# be expressed in the 2-D image frame. Tolerance for that check:
+ON_DETECTOR_PLANE_TOL_MM = 1e-6
 # ---------------------------------------------------------------------------
 MD_ORIGIN_IN_CK_MM = np.array([0.0, 0.0, 0.0])
 MD_AXES_IN_CK = np.eye(3)    # rows = MD base vectors (e1, e2, e3) in CK coords

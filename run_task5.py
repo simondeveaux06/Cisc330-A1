@@ -11,7 +11,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-import drr
+drr = __import__('5_drr')
 from config import POSES, N_PIXELS, DETECTOR_SIZE_MM, MARKER_NAMES
 
 N_PIXELS_RUN = N_PIXELS            # 2000 x 2000 = the real 0.1 mm detector

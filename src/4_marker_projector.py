@@ -10,8 +10,13 @@ from pathlib import Path
 import csv
 import numpy as np
 from config import MARKERS_MD_MM, DETECTOR_SIZE_MM, N_PIXELS
-from transforms import md_to_ck, ck_to_detector, detector_to_image
-from projector import project_ck_to_detector
+_transforms = __import__('1_transforms', fromlist=['*'])
+md_to_ck = _transforms.md_to_ck
+ck_to_detector = _transforms.ck_to_detector
+detector_to_image = _transforms.detector_to_image
+project_ck_to_detector = __import__(
+    '3_forward_projector', fromlist=['project_ck_to_detector']
+).project_ck_to_detector
 
 OUT = Path(__file__).resolve().parent / 'q4_outputs'
 

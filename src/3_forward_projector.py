@@ -8,7 +8,7 @@ when expressed in the corresponding detector coordinate frame.
 """
 import numpy as np
 from config import SDD_MM
-from transforms import ck_to_detector
+ck_to_detector = __import__('1_transforms', fromlist=['ck_to_detector']).ck_to_detector
 
 
 def project_ck_to_detector(points_ck_mm, pose):

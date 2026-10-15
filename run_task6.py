@@ -33,9 +33,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-import drr
-import localization as L
-import transforms as T
+drr = __import__('5_drr')
+L = __import__('6_localization')
+T = __import__('1_transforms')
 from config import POSES, N_PIXELS, MARKER_NAMES, PIXEL_PITCH_MM
 
 DRR_DIR = ROOT / "output" / "drr"

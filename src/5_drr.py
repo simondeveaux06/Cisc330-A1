@@ -41,7 +41,7 @@ Assumptions (also listed in the report)
 """
 import numpy as np
 
-import transforms as T
+T = __import__('1_transforms')
 from config import (DETECTOR_SIZE_MM, N_PIXELS, MARKERS_MD_MM, MARKER_RADIUS_MM,
                     SPHERE_PHANTOM_CENTRE_CK_MM, SPHERE_PHANTOM_RADIUS_MM,
                     DENSITY_VERTEBRA_G_CM3, DENSITY_STEEL_G_CM3,

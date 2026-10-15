@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import numpy as np
 
-import drr
-import reconstruction as R
+drr = __import__('5_drr')
+R = __import__('7_reconstruction')
 from config import MARKER_NAMES
 
 OUT_DIR = ROOT / "output" / "reconstruction"

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 import numpy as np
 import scipy.ndimage as ndi
 
-import transforms as T
+T = __import__('1_transforms')
 from config import (DETECTOR_SIZE_MM, N_PIXELS, MARKER_RADIUS_MM, SDD_MM, SAD_MM,
                     DENSITY_STEEL_G_CM3, DENSITY_VERTEBRA_G_CM3,
                     K_ATTENUATION_CM2_PER_G, MM_PER_CM)

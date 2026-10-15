@@ -13,7 +13,11 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 from config import MARKERS_MD_MM
-from transforms import md_to_ck, ck_to_detector, detector_to_ck, ck_to_md
+_transforms = __import__('1_transforms', fromlist=['*'])
+md_to_ck = _transforms.md_to_ck
+ck_to_detector = _transforms.ck_to_detector
+detector_to_ck = _transforms.detector_to_ck
+ck_to_md = _transforms.ck_to_md
 
 OUTPUT_DIR = Path(__file__).resolve().parent / 'q2_outputs'
 TOL_MM = 1e-9

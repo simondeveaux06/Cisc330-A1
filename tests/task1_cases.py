@@ -17,7 +17,7 @@ BEFORE running the code. Useful numbers:
     Detector centre = -1000*w, source = +1000*w   (mm)
 """
 import numpy as np
-import transforms as T
+T = __import__('1_transforms')
 
 s = np.sqrt(0.5)
 

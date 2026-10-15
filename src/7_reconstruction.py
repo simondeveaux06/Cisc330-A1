@@ -20,7 +20,7 @@ hundreds of thousands of perturbed pairs at once.
 """
 import numpy as np
 
-import transforms as T
+T = __import__('1_transforms')
 from geometry import normalize, closest_points_between_lines
 
 

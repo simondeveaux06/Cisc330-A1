@@ -14,8 +14,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-import drr
-import transforms as T
+drr = __import__('5_drr')
+T = __import__('1_transforms')
 from config import POSES, DETECTOR_SIZE_MM, SPHERE_PHANTOM_RADIUS_MM, MARKER_NAMES
 
 COLOURS = {"A": "tab:blue", "B": "tab:orange"}

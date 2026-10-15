@@ -15,9 +15,16 @@ from matplotlib.patches import Rectangle
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
 from config import MARKERS_MD_MM, SAD_MM, SDD_MM, DETECTOR_SIZE_MM
-from transforms import (md_to_ck, detector_to_ck, detector_origin_in_ck,
-                        detector_axes_in_ck, source_position_ck, ck_to_detector)
-from projector import project_ck_to_detector
+_transforms = __import__('1_transforms', fromlist=['*'])
+md_to_ck = _transforms.md_to_ck
+detector_to_ck = _transforms.detector_to_ck
+detector_origin_in_ck = _transforms.detector_origin_in_ck
+detector_axes_in_ck = _transforms.detector_axes_in_ck
+source_position_ck = _transforms.source_position_ck
+ck_to_detector = _transforms.ck_to_detector
+project_ck_to_detector = __import__(
+    '3_forward_projector', fromlist=['project_ck_to_detector']
+).project_ck_to_detector
 
 COLORS = {'A': '#dc4c4c', 'B': '#2563eb'}
 MARKER_COLORS = ['#e6a13a', '#9a60c6', '#159b81']

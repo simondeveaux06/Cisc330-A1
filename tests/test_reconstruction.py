@@ -11,8 +11,8 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent.parent / "src"))
 import numpy as np
 from numpy.testing import assert_allclose
 
-import drr
-import reconstruction as R
+drr = __import__('5_drr')
+R = __import__('7_reconstruction')
 
 
 def test_known_markers_reconstruct_with_zero_rem():

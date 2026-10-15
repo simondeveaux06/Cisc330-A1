@@ -1,4 +1,5 @@
-"""Task 5: Digitally Reconstructed Radiographs (DRRs).
+"""
+Question 5: Digitally Reconstructed Radiographs (DRRs).
 
 Approach (one X-ray beam per detector pixel)
 --------------------------------------------

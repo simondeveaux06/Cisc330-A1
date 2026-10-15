@@ -1,4 +1,5 @@
-"""Task 7: reconstruct a marker in the CK frame from its two X-ray images.
+"""
+Question 7: Marker reconstructions
 
 Method (Discrete Tomography lecture, "Reconstruction of point marker from 2 images")
 -----------------------------------------------------------------------------------

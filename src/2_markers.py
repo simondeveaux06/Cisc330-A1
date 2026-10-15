@@ -1,4 +1,4 @@
-"""Question 2: transform, save, plot, and validate the CyberKnife markers.
+"""Question 2: Marker Transforms
 
 Run from anywhere: python path/to/markers.py
 Results are written to a 'q2_outputs' folder next to this file.

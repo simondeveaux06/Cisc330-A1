@@ -1,4 +1,5 @@
-"""Q4: Project the three MD markers onto CyberKnife detectors A and B.
+"""
+Question 4: Marker Projector
 
 Uses the existing Q1 transforms and Q3 forward projector. Physical coordinates
 are millimetres; image coordinates are zero-based (row, column) pixel-center

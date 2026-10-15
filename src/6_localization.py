@@ -1,4 +1,5 @@
-"""Task 6: localize the centres of the spherical markers in a DRR.
+"""
+Question 6: MARKER LOCALIZATION
 
 """
 from dataclasses import dataclass

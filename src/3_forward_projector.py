@@ -1,4 +1,5 @@
-"""Q3 CyberKnife perspective forward projector.
+"""
+Question 3: Forward projector.
 
 CK input points and detector output coordinates are in millimetres.
 Detector image pixel coordinates are NOT computed here (see Q4).

@@ -28,7 +28,7 @@ def project_markers():
               'markers_ck_mm': ck}
     for pose in ('A', 'B'):
         uv = project_ck_to_detector(ck, pose)
-        rc = detector_to_image(uv)
+        rc = detector_to_image(uv, pose)
         inside = np.all(np.abs(uv) <= DETECTOR_SIZE_MM / 2, axis=1)
         result[f'detector_{pose}_uv_mm'] = uv
         result[f'image_{pose}_row_col_px'] = rc
@@ -68,7 +68,7 @@ def validate(results, predictions, tolerance_mm=0.01):
         scale = 2000 / (2000 - det_3d[:, 2])
         np.testing.assert_allclose(actual, det_3d[:, :2] * scale[:, None], atol=1e-9)
         rc = results[f'image_{pose}_row_col_px']
-        np.testing.assert_allclose(rc, detector_to_image(actual), atol=1e-9)
+        np.testing.assert_allclose(rc, detector_to_image(actual, pose), atol=1e-9)
         inside_pixels = np.all((rc >= -0.5) & (rc <= N_PIXELS - 0.5), axis=1)
         np.testing.assert_array_equal(inside_pixels, results[f'detector_{pose}_inside'])
     return True

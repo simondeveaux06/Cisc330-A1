@@ -89,12 +89,6 @@ def register(model_pts, observed_pts, method="frame"):
         and the registration matrix is F = F_hv @ F_eh.
         Uses exactly three markers, in matching order.
 
-    method = "svd" 
-        Least-squares fit over all N >= 3 markers. Gives the same F as the
-        frame method on exact data. With noisy data the two differ slightly,
-        because the frame method trusts the A->B direction completely,
-        while SVD spreads the error over all the markers.
-
     Returns F (4x4).
     """
     P = np.asarray(model_pts, dtype=float)
@@ -108,16 +102,6 @@ def register(model_pts, observed_pts, method="frame"):
         F_he = frame_from_points(*P)
         F_hv = frame_from_points(*Q)
         return F_hv @ invert_F(F_he)
-
-    if method == "svd":
-        if P.shape[0] < 3:
-            raise ValueError("at least 3 point pairs are needed")
-        cp, cq = P.mean(axis=0), Q.mean(axis=0)
-        H = (P - cp).T @ (Q - cq)                 # 3x3 cross-covariance
-        U, _, Vt = np.linalg.svd(H)
-        d = np.sign(np.linalg.det(Vt.T @ U.T))    # -1 would mean a reflection
-        R = Vt.T @ np.diag([1.0, 1.0, d]) @ U.T
-        return make_F(R, cq - R @ cp)
 
     raise ValueError(f"unknown method {method!r}")
 

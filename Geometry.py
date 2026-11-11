@@ -1,6 +1,5 @@
 """
 geometry.py — shared geometry utilities for the CT-guided bone biopsy project.
-
 """
 
 import numpy as np
@@ -41,20 +40,13 @@ def transform_vector(F, v):
     return w / np.linalg.norm(w)
 
 
-# Cartesian frame from three points (Primer Part 1)
+# Cartesian frame from three points 
 
 def frame_from_points(A, B, C):
     """
     Build the unique orthonormal body frame of three non-collinear markers,
     and return it as the 4x4 matrix F_h<body> (body coordinates -> home).
 
-      Step 1, orthonormal base (right-hand rule):
-          i = normalize(B - A)            in the ABC plane
-          k = normalize(i x (C - A))      perpendicular to the ABC plane
-          j = k x i                       in the ABC plane, already unit length
-      Step 2, centre: the centroid O = (A + B + C) / 3, the least-squares best
-          fitting point, which makes the frame less sensitive to noise in any
-          single marker.
     Primer test case: A(0,0,0), B(1,0,0), C(0,1,0) -> i(1,0,0), j(0,1,0), k(0,0,1)
     """
     A, B, C = (np.asarray(x, dtype=float) for x in (A, B, C))
@@ -68,45 +60,32 @@ def frame_from_points(A, B, C):
     k = n / np.linalg.norm(n)
     j = np.cross(k, i)
     O = (A + B + C) / 3.0
-    R = np.column_stack([i, j, k])   # columns = base vectors (R_hv in the Primer)
+    R = np.column_stack([i, j, k])   
     return make_F(R, O)
 
 
 # Rigid registration
 
-def register(model_pts, observed_pts, method="frame"):
+
+def register(model_pts, observed_pts):
     """
     Find the rigid transform F that maps model points onto observed points:
-        observed_i ~= F @ model_i
+        observed_i = F @ model_i
 
-    method = "frame" 
-        Build the body frame from the markers in each observation:
-            F_he = frame_from_points(model markers)      (observation e)
-            F_hv = frame_from_points(observed markers)   (observation v)
-        A point fixed on the body has the same body-frame coordinates in both
-        observations, so
-            p_v = F_hv @ F_eh @ p_e,     with F_eh = inv(F_he)
-        and the registration matrix is F = F_hv @ F_eh.
-        Uses exactly three markers, in matching order.
-
-    Returns F (4x4).
+    Parameters: two (3, 3) arrays of the three markers, as rows, in matching
+    order. Returns F (4x4).
     """
     P = np.asarray(model_pts, dtype=float)
     Q = np.asarray(observed_pts, dtype=float)
-    if P.shape != Q.shape or P.ndim != 2 or P.shape[1] != 3:
-        raise ValueError("model_pts and observed_pts must both be (N, 3) arrays")
+    if P.shape != (3, 3) or Q.shape != (3, 3):
+        raise ValueError("model_pts and observed_pts must both be (3, 3): three markers as rows")
 
-    if method == "frame":
-        if P.shape[0] != 3:
-            raise ValueError("the frame method uses exactly 3 markers")
-        F_he = frame_from_points(*P)
-        F_hv = frame_from_points(*Q)
-        return F_hv @ invert_F(F_he)
-
-    raise ValueError(f"unknown method {method!r}")
+    F_he = frame_from_points(*P)
+    F_hv = frame_from_points(*Q)
+    return F_hv @ invert_F(F_he)
 
 
-# Elementary rotations (Primer Part 2), as 3x3; wrap with make_F for 4x4
+# Elementary rotations
 
 def rot_x(deg):
     a = np.radians(deg); c, s = np.cos(a), np.sin(a)

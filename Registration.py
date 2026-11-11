@@ -39,7 +39,7 @@ def register_tool(markers_tool, p_tool, v_tool, markers_ct, method="frame"):
     p_tool       : (3,)   tool tip in tool frame
     v_tool       : (3,)   tool axis in tool frame
     markers_ct   : (3, 3) M1ct, M2ct, M3ct as rows, in the SAME order
-    method       : "frame" (course method) or "svd" (least-squares cross-check)
+    method       : "frame" (course method)
 
     Returns
     -------
